@@ -9,6 +9,10 @@ import Home from './Components/Home/Home';
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicRoute from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
+import UserList from './Components/UserList/UserList';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
 
@@ -41,10 +45,12 @@ function App() {
             <Link to="/login">Login</Link><small></small>
             {localStorage.getItem("isAuth" === "true" && (
               <li>
-                <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
+                {/* <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small> */}
+                {/* <Link to="/userList">User List</Link><small>(Acceso privado)</small> */}
               </li>
             ))}
             <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
+            <Link to="/userList">User List</Link><small>(Acceso privado)</small>
            
            
           </div>
@@ -52,13 +58,23 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home/>} />
               <Route path="/login" element={<Login/>} />
-              {/* <Route exct path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}/> */}
+              {/* <Route exact path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}/> */}
               
               <Route path="/dashboard" element={<Dashboard/>} />
+              {/* <Provider store={store}>
+                <Route path="/userList" element={<UserList/>} />
+              </Provider> */}
+
+              {/* <Route path="/userList" element={<UserList/>} /> */}
             </Routes>
           </div>
         </div>
       </Router>
+      {/* <Provider store={store}>
+      <UserList />
+    </Provider> */}
+
+
     </div>
   );
 }
