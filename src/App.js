@@ -13,6 +13,7 @@ import UserList from './Components/UserList/UserList';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import LoginForm from './Components/LoginForm/LoginForm';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
             ))}
             <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
             <Link to="/userList">User List</Link><small>(Acceso privado)</small>
+            <Link to="/userForm">Register</Link>
            
            
           </div>
@@ -58,6 +60,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home/>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/userForm" element={<LoginForm/>} />
               {/* <Route exact path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}/> */}
               
               <Route path="/dashboard" element={<Dashboard/>} />

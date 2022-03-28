@@ -1,0 +1,17 @@
+.register{
+    display:block;
+    max-width: 200px; 
+    margin-left:50px;
+}
+label{
+    margin-top: 20px;
+}
+form{
+    margin-left:50px
+}
+.submit{
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: center;
+    background-color: rgb(92, 170, 235);
+}
