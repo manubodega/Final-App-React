@@ -6,16 +6,31 @@ import axios from 'axios';
 import Login from './Components/Login/Login';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Home from './Components/Home/Home';
+import UserList from './Components/UserList/UserList';
+import LoginForm from './Components/LoginForm/LoginForm';
+
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicRoute from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
-import UserList from './Components/UserList/UserList';
+
 
 import { Provider } from 'react-redux';
 import store from './store';
-import LoginForm from './Components/LoginForm/LoginForm';
+import ThemeContext, {themes} from './Utils/Context';
+
 
 function App() {
+
+  //Definimos el estado inicial de nuestro Theme
+  const [theme, setTheme] = useState(themes.light);
+
+  //Usamos setTheme para hacer el cambio del theme validando si el theme actual es dark o light y devolviendo el valor que corresponda a la validación.
+  const handleChangeTheme = () => {
+    // console.log(theme);
+    setTheme(() => {
+      return theme === themes.dark ? themes.light : themes.dark;
+    });
+  };
 
   const [authLoading, setAuthLoading] = useState(true);
  
@@ -39,45 +54,44 @@ function App() {
   }
   return (
     <div className="App">
-      <Router>
-        <div>
-          <div className="header">
-            <Link to="/">Home</Link>
-            <Link to="/login">Login</Link><small></small>
-            {localStorage.getItem("isAuth" === "true" && (
-              <li>
-                {/* <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small> */}
-                {/* <Link to="/userList">User List</Link><small>(Acceso privado)</small> */}
-              </li>
-            ))}
-            <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
-            <Link to="/userList">User List</Link><small>(Acceso privado)</small>
-            <Link to="/userForm">Register</Link>
-           
-           
-          </div>
-          <div className="content">
-            <Routes>
-              <Route exact path="/" element={<Home/>} />
-              <Route path="/login" element={<Login/>} />
-              <Route path="/userForm" element={<LoginForm/>} />
-              {/* <Route exact path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}/> */}
-              
-              <Route path="/dashboard" element={<Dashboard/>} />
-              {/* <Provider store={store}>
+
+    <ThemeContext.Provider value={{ theme, handleChangeTheme }}>
+
+      <Provider store={store}>
+        <Router>
+          <div>
+            <div className="header">
+              <Link to="/">Home</Link>
+              <Link to="/login">Login</Link><small></small>
+              {localStorage.getItem("isAuth" === "true" && (
+                <li>
+                  {/* <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small> */}
+                  {/* <Link to="/userList">User List</Link><small>(Acceso privado)</small> */}
+                </li>
+              ))}
+              <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
+              <Link to="/userList">Members</Link><small>(Acceso privado)</small>
+              <Link to="/userForm">Register</Link>
+            
+            
+            </div>
+            <div className="content">
+              <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/userForm" element={<LoginForm/>} />
+                {/* <Route path='dashboard' element={<PrivateRoute component={Dashboard}/>}/> */}
+                
+                <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/userList" element={<UserList/>} />
-              </Provider> */}
-
-              {/* <Route path="/userList" element={<UserList/>} /> */}
-            </Routes>
+              </Routes>
+            </div>
           </div>
-        </div>
-      </Router>
-      {/* <Provider store={store}>
-      <UserList />
-    </Provider> */}
+        </Router>
+        {/* <UserList /> */}
+      </Provider>
 
-
+    </ThemeContext.Provider>
     </div>
   );
 }

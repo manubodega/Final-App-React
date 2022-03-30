@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { setUserSession } from '../../Utils/Common';
+import ThemeContext from '../../Utils/Context';
+
 
 function Login(props) {
+
+  //usamos useContext y le pasamos el context de nuestro theme
+  const { theme } = useContext(ThemeContext);
+
+
   const [loading, setLoading] = useState(false);
   const username = useFormInput('');
   const password = useFormInput('');
@@ -24,17 +31,24 @@ function Login(props) {
   }
 
   return (
-    <div>
+    <div 
+      id='login'
+      style={{ background: theme.secondary_color, color: theme.primary_color }}
+    >
       Login<br /><br />
+
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
       </div>
+
       <div style={{ marginTop: 10 }}>
         Password<br />
         <input type="password" {...password} autoComplete="new-password" />
       </div>
+
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+
       <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
     </div>
   );

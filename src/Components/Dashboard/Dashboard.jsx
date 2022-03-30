@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {getUser, removeUserSession} from '../../Utils/Common'
+import ThemeContext from '../../Utils/Context';
 import './Dashboard.css';
 
 function Dashboard(props) {
+
+  //usamos useContext y le pasamos el context de nuestro theme
+  const { theme } = useContext(ThemeContext);
+
   const [result, setResult] = React.useState([]);
     const [poke, setPoke] = React.useState([]);
     const [load, setLoad] = React.useState('true');
@@ -25,18 +30,23 @@ function Dashboard(props) {
     }, 1000);
 
 
-  const user = getUser();
+  // const user = getUser();
 
-  // handle click event of logout button
-  const handleLogout = () => {
-    removeUserSession();
-    props.history.push('/login');
-  }
+  // // handle click event of logout button
+  // const handleLogout = () => {
+  //   removeUserSession();
+  //   props.history.push('/login');
+  // }
 
   return (
-    <div>
-      {/* Welcome {user.name}!<br /><br /> */}
-      {/* <input type="button" onClick={handleLogout} value="Logout" /> */}
+    <div
+      id='login'
+      style={{ background: theme.secondary_color, color: theme.primary_color }}
+    >
+
+      {/* Welcome {user.name}!<br /><br />
+      <input type="button" onClick={handleLogout} value="Logout" /> */}
+
       <div className="Pokemon">
         <div className='pokegallery'>{ load ? (<p>Loading...</p>) : (poke.map((img, i) => 
         (
