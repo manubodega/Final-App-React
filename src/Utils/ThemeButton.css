@@ -1,0 +1,10 @@
+.button-container{
+    margin-top: 20px;
+    display: flex;
+}
+
+.theme-button{
+    -ms-flex-align: end;
+    background-color: red;
+    border-radius: 20px;
+}

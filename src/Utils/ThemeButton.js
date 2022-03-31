@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import ThemeContext from './Context';
+import "./ThemeButton.css";
 
 function ThemeButton() {
 
@@ -7,11 +8,14 @@ function ThemeButton() {
   const { theme, handleChangeTheme } = useContext(ThemeContext);
 
   return (
-    <button
-      className='theme_button'
-      onClick={handleChangeTheme}
-      style={{ background: theme.background, color: theme.foreground }}
-    > Cambiar Modo</button>
+    <div className='button-container'>
+      <button
+        className="theme-button"
+        onClick={handleChangeTheme}
+        style={{ background: theme.background, color: theme.foreground }}>
+        Change Theme
+      </button>
+    </div>
   );
 }
 

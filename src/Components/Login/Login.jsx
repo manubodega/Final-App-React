@@ -33,23 +33,26 @@ function Login(props) {
   return (
     <div 
       id='login'
-      style={{ background: theme.secondary_color, color: theme.primary_color }}
-    >
-      Login<br /><br />
+      style={{ margin:'20px',background: theme.secondary_color, color: theme.primary_color }}>
+      <br /><br />
 
-      <div>
-        Username<br />
-        <input type="text" {...username} autoComplete="new-password" />
+      <div style={{ margin:'20px'}}>
+        <h2>Login</h2>
+
+        <div>
+          Username<br />
+          <input type="text" {...username} autoComplete="new-password" />
+        </div>
+
+        <div style={{ marginTop: 10 }}>
+          Password<br />
+          <input type="password" {...password} autoComplete="new-password" />
+        </div>
+
+        {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+
+        <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
       </div>
-
-      <div style={{ marginTop: 10 }}>
-        Password<br />
-        <input type="password" {...password} autoComplete="new-password" />
-      </div>
-
-      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-
-      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
     </div>
   );
 }

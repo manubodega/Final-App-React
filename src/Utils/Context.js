@@ -8,7 +8,7 @@ export const themes = {
   },
   dark: {
     primary_color: '#ffffff',
-    secondary_color: '#222222'
+    secondary_color: '#5f7f7a'
   }
 };
 

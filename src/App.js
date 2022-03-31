@@ -69,9 +69,10 @@ function App() {
                   {/* <Link to="/userList">User List</Link><small>(Acceso privado)</small> */}
                 </li>
               ))}
-              <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
-              <Link to="/userList">Members</Link><small>(Acceso privado)</small>
               <Link to="/userForm">Register</Link>
+              <Link to="/dashboard">Pokedex</Link><small>(Acceso privado)</small>
+              <Link to="/userList">Comunity Members</Link><small>(Acceso privado)</small>
+              
             
             
             </div>
